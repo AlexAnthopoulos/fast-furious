@@ -1,4 +1,6 @@
 const { Router } = require('express');
+//Add user here
+const User = require('../models/User.model');
 const router = new Router();
 //Add Bcrypt here
 const bcryptjs = require('bcryptjs');
@@ -14,7 +16,14 @@ router.post('/signup',(req,res,next) =>{
   .genSalt(saltRounds)
   .then(salt => bcryptjs.hash(password,salt))
   .then(hashedPassword => {
-    console.log(`Password hash: ${hashedPassword}`);
+    return User.create({
+      username,
+      email,
+      passwordHash:hashedPassword
+    });
+  })
+  .then(userFromDB => {
+    console.log('Newly created user is: ', userFromDB);
   })
   .catch(error => next(error));
 });

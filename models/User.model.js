@@ -4,6 +4,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
+      games:[{ type: Schema.Types.ObjectId, ref:'Games'}],
       trim: true,
       required: [true, 'Username is required.'],
       unique: true

@@ -52,7 +52,9 @@ app.locals.title = 'Fast and Furious';
 
 
 const index = require('./routes/index');
+const authRouter = require('./routes/auth.routes');
 app.use('/', index);
+app.use('/',authRouter);
 
 
 module.exports = app;

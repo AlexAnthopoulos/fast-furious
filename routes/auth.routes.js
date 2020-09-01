@@ -36,6 +36,7 @@ if (!regex.test(password)) {
   })
   .then(userFromDB => {
     console.log('Newly created user is: ', userFromDB);
+    res.redirect('/userProfile');
   })
   .catch(error => {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -50,4 +51,5 @@ if (!regex.test(password)) {
   });
 });
 
+router.get('/userProfile', (req, res) => res.render('users/user-profile'));
 module.exports = router;

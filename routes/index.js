@@ -50,5 +50,9 @@ router.get('/streams', (req, res, next) => {
   res.render('streams');
 });
 
+router.get('/games/:id', (req,res) =>{
+  res.render('records');
+})
+
 module.exports = router;
 

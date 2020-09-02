@@ -5,6 +5,7 @@ const gameSchema = new Schema(
   {
     name: {
       type: String,
+      
       unique: true
     },
     background_image: {
@@ -26,7 +27,8 @@ const gameSchema = new Schema(
     platforms: {
       type: Array,
       unique: true
-    }
+    },
+    records:[{ type: Schema.Types.ObjectId, ref:'Records'}]
   }
 )
 

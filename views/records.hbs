@@ -1,3 +1,14 @@
-<h1>You made it this far!!!</h1>
-//Here ideally you would have everything saved and coming from the database in terms of records. This page will need to be swapped.
-//Feedback coming would be depending on the game that exists all records placed by users are here.
+<h1> All records</h1>
+<p>{{game_id}}</p>
+<a href="/games/{{game_id}}/records/create">Create a Record</a>
+{{#each records}}
+<hr>
+<p>Record Holder: {{this.name}}</p>
+<p>Time : {{this.time}}</p>
+<p>Picture : {{this.picture}}</p>
+<p>Video: {{this.video}}</p>
+<a href="/games/{{this.id}}/records/edit"> Edit</a>
+<form action = "/games/{{../game_id}}/records/{{this.id}}/delete" method="POST">
+    <button type="submit">Delete</button>
+    </form>
+{{/each}}

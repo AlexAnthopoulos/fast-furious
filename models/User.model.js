@@ -4,7 +4,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      games:[{ type: Schema.Types.ObjectId, ref:'Games'}],
+      
       trim: true,
       required: [true, 'Username is required.'],
       unique: true
@@ -19,10 +19,11 @@ const userSchema = new Schema(
     },
     passwordHash: {
       type: String,
-      required: [true, 'Password is required.']
-    }
+      required: [true, 'Password is required.'],
+    },
+    records:[{ type: Schema.Types.ObjectId, ref:'Records'}]
   },
-  {
+ {
     timestamps: true
   }
 );

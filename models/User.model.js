@@ -21,7 +21,13 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required.'],
     },
-    records:[{ type: Schema.Types.ObjectId, ref:'Records'}]
+    role: {
+      type: String,
+      enum: ['GUEST','ADMIN','REGULAR'],
+      default: 'GUEST',
+    },
+    records:[{ type: Schema.Types.ObjectId, ref:'Records'}],
+    games:[{ type: Schema.Types.ObjectId, ref:'Games'}]
   },
  {
     timestamps: true

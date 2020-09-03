@@ -7,7 +7,8 @@ const RecordSchema = new Schema(
     time: Number,
     picture: String,
     video: String,
-    games:[{ type: Schema.Types.ObjectId, ref:'Games'}]
+    games:[{ type: Schema.Types.ObjectId, ref:'Games'}],
+    users:[{ type: Schema.Types.ObjectId, ref:'Users'}]
   },
  
 )

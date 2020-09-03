@@ -176,3 +176,64 @@ ol {
 	color: #aeaeae;
 	margin-left: 30px;
 }
+
+.footer-section {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	
+}
+
+.hero-section {
+	background-image: url('../images/Tracer-overwatch.png');
+	background-size: cover;
+	position: relative;
+	height:100%;
+}
+
+.index-text {
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	position: relative;
+	top: 490px;
+	left: 100px;
+}
+
+.index-text h2 {
+	color: rgb(235, 251, 12);
+	font-weight: bold;
+}
+
+.index-text p {
+	color: rgb(250, 248, 248);
+}
+
+#twitch-embed {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-content: space-around;
+
+}
+
+#twitch-more {
+	display: flex;
+	justify-content: space-between;
+	align-content: space-around;
+	margin-top : 20px;
+}
+
+.twitch-wrap {
+	background-image: url('../images/streams.jpg');
+	background-size: cover;
+	position: relative;
+	height:100%;
+}
+
+#twitch-three {
+	display: flex;
+	justify-content: space-between;
+	align-content: space-around;
+	margin-top : 20px;
+}

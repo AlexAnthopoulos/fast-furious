@@ -1,10 +1,16 @@
 const { Router } = require('express');
+const mongoose = require('mongoose');
 //Add user here
 const User = require('../models/User.model');
 const router = new Router();
 //Add Bcrypt here
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
+const passport = require('passport');
+const Records = require('../models/Records.model');
+// const checkGuest = checkRoles('GUEST');
+// const checkAdmin = checkRoles('ADMIN');
+// const checkUser = checkRoles('USER')
 //get routes Here we will display the signup fors for users
 
 router.get('/signup', (req,res) => res.render('auth/signup'));
@@ -51,39 +57,97 @@ if (!regex.test(password)) {
   });
 });
 
-router.get('/login',(req,res) => res.render('auth/login'));
-router.post('/login', (req, res, next) => {
-  console.log('SESSION =====> ', req.session);
- const { email, password } = req.body;
- 
-  if (email === '' || password === '') {
-    res.render('auth/login', {
-      errorMessage: 'Please enter both, email and password to login.'
-    });
-    return;
-  }
- 
-  User.findOne({ email })
-    .then(user => {
-      if (!user) {
-        res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
-        return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        req.session.currentUser = user;
-        res.redirect('/userProfile');
-      } else {
-        res.render('auth/login', { errorMessage: 'Incorrect password.' });
-      }
-    })
-    .catch(error => next(error));
+router.get('/login', (req, res, next) => {
+  res.render('auth/login');
 });
+ 
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/login"
+}));
+
+router.get("/private", (req, res) => {
+  if (!req.user) {
+    res.redirect('/login'); // not logged-in
+    return;
+  } else {
+    res.render("private", {user: req.user});
+  }
+});
+//Passport Roles
+// router.get('/private', ensureAuthenticated, (req, res) => {
+//   res.render('private', { user: req.user });
+// });
+
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     // The user is authenticated
+//     // and we have access to the logged user in req.user
+//     return next();
+//   } else {
+//     res.redirect('/login');
+//   }
+// }
+
+
+// router.get('/login',(req,res) => res.render('auth/login'));
+// router.post('/login', (req, res, next) => {
+//   console.log('SESSION =====> ', req.session);
+//  const { email, password } = req.body;
+ 
+//   if (email === '' || password === '') {
+//     res.render('auth/login', {
+//       errorMessage: 'Please enter both, email and password to login.'
+//     });
+//     return;
+//   }
+ 
+//   User.findOne({ email })
+//     .then(user => {
+//       if (!user) {
+//         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
+//         return;
+//       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+//         req.session.currentUser = user;
+//         res.redirect('/userProfile');
+//       } else {
+//         res.render('auth/login', { errorMessage: 'Incorrect password.' });
+//       }
+//     })
+//     .catch(error => next(error));
+// });
 
 router.get('/userProfile', (req, res) => {
-  res.render('users/user-profile', { userInSession: req.session.currentUser});
+// TODO Record.find() --> to get all the records
+// in the .then() of Record.find() --> map the results that match with the _id value of req.user. 
+// send the mapped results to user-profile.hbs -->> {userInSession: req.user, userRecords : the mapped results}
+
+Records.find()
+.then((results) => {
+  console.log('Retrieved results: ', results);
+
+
+  results.map()
+
+  res.render('users/user-profile', { userInSession: req.user, userRecords: 1});
+}).catch(() => {})
+  
 });
 
-router.post('/logout', (req,res) => {
-  req.session.destroy();
-  res.redirect('/');
+router.get('/logout',(req,res) => {
+  req.logout();
+  res.redirect('/login');
+})
+
+// router.post('/logout', (req,res) => {
+//   req.session.destroy();
+//   res.redirect('/');
+// });
+
+//Passport logou
+router.get('/logout',(req,res) => {
+  req.logout();
+  res.redirect('/login');
 });
+
 module.exports = router;

@@ -1,0 +1,9 @@
+{{#if user}}
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        {{else}}
+        
+        <a href="/login">Login</a>  /  <a href="/signup">Register</a>
+{{/if}}
+<h1>Private page</h1>
+ 
+<p>Welcome {{user.username}}</p>

@@ -306,8 +306,15 @@ align-content: space-around;
 .inner-games {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
 	flex-direction: row;
 	border-style: solid;
 	align-items: center;
+}
+
+.records {
+	background-image: url('../images/records_background.jpg');
+	background-size: cover;
+	position: relative;
+	height: 100%;
 }

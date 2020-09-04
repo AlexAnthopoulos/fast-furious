@@ -1,9 +1,12 @@
-<h1>Click on the games</h1>
-<hr>
+<div class="games">
+<p>Click on the games or search for records</p>
 {{#each games}}
- <img src = "{{this.background_image}}"/>
+<div class="inner-games">
+ <img class="game-backgrounds"src = "{{this.background_image}}"/>
 <p>{{name}}</p>
 <p>{{rating}}</p>
 <p>{{released}}</p>
 <a href="/games/{{this.id}}"> See records</a>
 {{/each}}
+</div>
+</div>

@@ -287,3 +287,27 @@ align-content: space-around;
 #signup-username {
 	color: white;
 }
+
+.games {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	flex-direction: row;
+	background-color: black;
+}
+
+.game-backgrounds {
+	width: 150px;
+	display: flex;
+	justify-content: space-around;
+	
+}
+
+.inner-games {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	flex-direction: row;
+	border-style: solid;
+	align-items: center;
+}

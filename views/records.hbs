@@ -1,57 +1,70 @@
+
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         {{#if userInSession}}
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        {{else}}
+        
+        <a href="/login">Login</a>  /  <a href="/signup">Register</a>
+         {{/if}}
+       
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+			<nav class="main-menu">
+				<ul>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/streams">Streams</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
 <div class="records">
-<h1> All records for {{game_name}} </h1>
-<p>{{game_id}}</p>
+<h1 class="records-top"> All records for {{game}} </h1>
 <a href="/games/{{game_id}}/records/create">Create a Record</a>
 {{#each records}}
 <hr>
-<table>
-    <tr>
-        <th>Record holder</th>
-        <th>Completion time(minutes)</th>
-        <th>Picture/Proof</th>
-        <th>Video of run</th>
-    </tr>
-    <tr>
-        <td>{{this.name}}</td>
-    </tr>
-    <tr>
-        <td>{{this.time}}</td>
-    </tr>
-    <tr>
-        <td>{{this.picture}}</td>
-    </tr>
-    <tr>
-        <td>{{this.video}}</td>
-    </tr>
+<table class="records-table">
+    <thead class="records-head">
+        <tr class="records-row">
+            <th>Record holder</th>
+            <th>Completion time(minutes)</th>
+            <th>Picture/Proof</th>
+            <th>Video of run</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.time}}</td>
+            <td>{{this.picture}}</td>
+            <td>{{this.video}}</td>
+            
+        </tr>
+    </tbody>
 </table>
 {{!-- <p>Record Holder: {{this.name}}</p>
 <p>Time : {{this.time}}</p>
 <p>Picture : {{this.picture}}</p>
 <p>Video: {{this.video}}</p> --}}
-</div>
-<a href="/games/{{this.id}}/records/edit"> Edit</a>
+
+
 <form action = "/games/{{../game_id}}/records/{{this.id}}/delete" method="POST">
     <button type="submit">Delete</button>
     </form>
+    
 {{/each}}
+</div>
 
-<table>
-    <tr>
-        <th>Record holder</th>
-        <th>Completion time(minutes)</th>
-        <th>Picture/Proof</th>
-        <th>Video of run</th>
-    </tr>
-    <tr>
-        <td>{{this.name}}</td>
-    </tr>
-    <tr>
-        <td>{{this.time}}</td>
-    </tr>
-    <tr>
-        <td>{{this.picture}}</td>
-    </tr>
-    <tr>
-        <td>{{this.video}}</td>
-    </tr>
-</table>
+

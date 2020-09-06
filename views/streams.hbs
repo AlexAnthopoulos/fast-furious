@@ -1,3 +1,36 @@
+
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         {{#if userInSession}}
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        {{else}}
+        
+        <a href="/login">Login</a>  /  <a href="/signup">Register</a>
+         {{/if}}
+       
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+      {{#if userInSession}}
+			<nav class="main-menu">
+				<ul>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/streams">Streams</a></li>
+				</ul>
+			</nav>
+      {{/if}}
+		</div>
+	</header>
+
 <!-- Add a placeholder for the Twitch embed -->
 <div class="twitch-wrap">
   <div id="twitch-embed"></div>

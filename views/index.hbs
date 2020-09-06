@@ -1,12 +1,49 @@
+
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         {{#if userInSession}}
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        {{else}}
+        
+        <a href="/login">Login</a>  /  <a href="/signup">Register</a>
+         {{/if}}
+       
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+			{{#if userInSession}}
+			<nav class="main-menu">
+				<ul>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/streams">Streams</a></li>
+				</ul>
+			</nav>
+	{{/if}}
+		</div>
+	</header>
 <section class="hero-section">
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="/images/background.jpg">
+			<div class="hs-item set-bg" data-setbg="#">
 				<div class="hs-text">
 					<div class="index-container">
 						<div class="index-text">
+							{{#if userInSession}}
 						<h2>The Best <span>Players</span> in the World.</h2>
 						<p>Fast and Furious <br> Where adrenaline speedrunning games and rage inducing moments become one. <br>Can you beat the clock?</p>
+						{{else}}
+							<h2>The Best <span>Players</span> in the World.</h2>
+						<p>Fast and Furious <br> Where adrenaline speedrunning games and rage inducing moments become one. <br>Can you beat the clock?</p>
 						<a href="/signup" class="site-btn">Signup</a>
+						{{/if}}
 						</div>
 					</div>
 				</div>

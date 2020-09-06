@@ -1,13 +1,77 @@
-{{#if userInSession}}
-    <h2>Welcome, {{ userInSession.username }}!</h2>
-    <p>This is your profile page my friend!</p>
-    <button>
-        <a href="/userProfile">Reload the page</a>
-    </button>
-{{else}}
-    <p>Still no logged in user, sorry!</p>
-{{/if}}
+    
+    
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         {{#if userInSession}}
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        {{else}}
+        
+        <a href="/login">Login</a>  /  <a href="/signup">Register</a>
+         {{/if}}
+       
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+         {{#if userInSession}}
+			<nav class="main-menu">
+				<ul>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/streams">Streams</a></li>
+				</ul>
+			</nav>
+         {{/if}}
+		</div>
+	</header>
+    <div class="profile-page">
 
-{{!-- <h1> Welcome to your user page</h1> --}}
-{{!-- Here are your records --}}
-{{!-- All of the records here so that someone can Edit,DELETE,or Create --}}
+
+    {{#if userInSession}}
+    <div class="greeting">
+    <h2>Welcome, {{userInSession.username }}!</h2>
+    <p>This is your profile page</p>
+    <p>Below you can see all your records:</p> 
+    </div>
+    {{#each records}}
+    <hr>
+    
+<table class="user-profile-table">
+    <thead>
+        <tr>
+            <th>Submitted Name:</th>
+            <th>Completion time(minutes)</th>
+            <th>Submitted Picture</th>
+            <th>Submitted video run</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.time}}</td>
+            <td>{{this.picture}}</td>
+            <td>{{this.video}}</td>
+            
+        </tr>
+        <a href="/games/{{this.id}}/records/edit"> Edit</a>
+    </table>
+    {{/each}}
+    {{else}}
+    <p>Still no logged in user, sorry!</p>
+    {{/if}}
+    </div>
+    </div>
+
+
+
+    {{!-- <h1> Welcome to your user page</h1> --}}
+    {{!-- Here are your records --}}
+    {{!-- All of the records here so that someone can Edit,DELETE,or Create --}}

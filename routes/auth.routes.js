@@ -8,13 +8,11 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const passport = require('passport');
 const Records = require('../models/Records.model');
-// const checkGuest = checkRoles('GUEST');
-// const checkAdmin = checkRoles('ADMIN');
-// const checkUser = checkRoles('USER')
-//get routes Here we will display the signup fors for users
+const Games = require('../models/Game.model');
+
 
 router.get('/signup', (req,res) => res.render('auth/signup'));
-//post routes
+
 router.post('/signup',(req,res,next) =>{
   const { username, email, password } = req.body;
   //Validation
@@ -62,7 +60,8 @@ router.get('/login', (req, res, next) => {
 });
  
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  
+  successRedirect: "/userProfile",
   failureRedirect: "/login"
 }));
 
@@ -74,62 +73,25 @@ router.get("/private", (req, res) => {
     res.render("private", {user: req.user});
   }
 });
-//Passport Roles
-// router.get('/private', ensureAuthenticated, (req, res) => {
-//   res.render('private', { user: req.user });
-// });
 
-// function ensureAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     // The user is authenticated
-//     // and we have access to the logged user in req.user
-//     return next();
-//   } else {
-//     res.redirect('/login');
-//   }
-// }
-
-
-// router.get('/login',(req,res) => res.render('auth/login'));
-// router.post('/login', (req, res, next) => {
-//   console.log('SESSION =====> ', req.session);
-//  const { email, password } = req.body;
- 
-//   if (email === '' || password === '') {
-//     res.render('auth/login', {
-//       errorMessage: 'Please enter both, email and password to login.'
-//     });
-//     return;
-//   }
- 
-//   User.findOne({ email })
-//     .then(user => {
-//       if (!user) {
-//         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
-//         return;
-//       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-//         req.session.currentUser = user;
-//         res.redirect('/userProfile');
-//       } else {
-//         res.render('auth/login', { errorMessage: 'Incorrect password.' });
-//       }
-//     })
-//     .catch(error => next(error));
-// });
 
 router.get('/userProfile', (req, res) => {
-// TODO Record.find() --> to get all the records
-// in the .then() of Record.find() --> map the results that match with the _id value of req.user. 
-// send the mapped results to user-profile.hbs -->> {userInSession: req.user, userRecords : the mapped results}
-
-Records.find()
-.then((results) => {
-  console.log('Retrieved results: ', results);
+  console.log('USER:', req.user);
+  if(!req.user){
+    res.redirect('/');
+    return;
+  }
 
 
-  results.map()
+Records.find({
+  users: { $in: [ mongoose.Types.ObjectId(req.user.id) ] }
+}).then((results) => {
 
-  res.render('users/user-profile', { userInSession: req.user, userRecords: 1});
+  
+
+  console.log('records for current user', results)
+
+  res.render('users/user-profile', { userInSession: req.user, records: results});
 }).catch(() => {})
   
 });
@@ -139,12 +101,7 @@ router.get('/logout',(req,res) => {
   res.redirect('/login');
 })
 
-// router.post('/logout', (req,res) => {
-//   req.session.destroy();
-//   res.redirect('/');
-// });
 
-//Passport logou
 router.get('/logout',(req,res) => {
   req.logout();
   res.redirect('/login');

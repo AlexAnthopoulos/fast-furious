@@ -40,6 +40,10 @@ h6 {
 	font-size: 16px;
 }
 
+a {
+	margin-bottom: 1rem;
+}
+
 p {
 	font-size: 14px;
 	color: #878787;
@@ -97,16 +101,13 @@ ol {
 	background: #131313;
 	clear: both;
 	overflow: hidden;
-	padding: 18px 0;
+	
 	border-bottom: 1px solid #ffb320;
 }
 
-.site-logo {
-	display: inline-block;
-	padding-top: 6px;
-}
 
 .user-panel {
+	margin-left: 100px;
 	float: right;
 	font-weight: 500;
 	background: #ffb320;
@@ -292,15 +293,13 @@ align-content: space-around;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	flex-direction: row;
+	flex-direction: column;
 	background-color: black;
 }
 
 .game-backgrounds {
 	width: 150px;
-	display: flex;
-	justify-content: space-around;
-	
+	height: 150px;
 }
 
 .inner-games {
@@ -310,11 +309,103 @@ align-content: space-around;
 	flex-direction: row;
 	border-style: solid;
 	align-items: center;
+	padding: 20px;
 }
 
 .records {
 	background-image: url('../images/records_background.jpg');
 	background-size: cover;
+	height: 100%;
+}
+
+
+.center{text-align:center}
+#space-invaders {
+  margin: 0 auto;
+  display: block;
+  background: white
+}
+
+.oops {
+background-image: url('../images/eror.jpg') ;
+background-size: cover;
+position: relative;
+height: 100%;
+}
+
+#restart {
+	color: red;
+}
+
+.center {
+	color: white;
+}
+
+#record-form {
+	background-image: url('../images/create-record.jpg');
+	background-size: cover;
 	position: relative;
 	height: 100%;
+}
+
+
+#record-form-inner {
+	margin-top: 400px;
+	margin-left: 200px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.profile-page {
+	background-image: url('../images/profile.jpg');
+	background-size: cover;
+	height: 100%;
+}
+
+.records-table {
+margin-left: 600px;
+
+}
+
+.update-record {
+	background-image: url('../images/ROG.jpg');
+	height: 100%;
+}
+
+.records-top {
+	color: white;
+	text-align:center;
+}
+
+.records-table{
+	color: white;
+}
+
+#record-form-inner {
+	margin: 10px;
+}
+
+.records-table th,
+td {
+	padding: 20px 20px;
+}
+.user-profile-table th, td {
+ padding: 20px 20px;
+}
+
+.update-record {
+	color: white;
+	display:flex;
+	align-items: center;
+	
+	justify-content: space-evenly;
+}
+
+.update-heading {
+	color: white;
+}
+
+.update-heading{
+	text-align: center;
 }

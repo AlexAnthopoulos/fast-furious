@@ -1,5 +1,40 @@
-<h2>Create a record</h2>
- 
+
+
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        
+         
+       
+			</div>
+			<!-- responsive -->
+			
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+			
+			<nav class="main-menu">
+				<ul>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/home">Home</a></li>
+					<li><a href="/streams">Streams</a></li>
+				</ul>
+			</nav>
+			
+		</div>
+	</header>
+<div id="record-form">
+
+
+<h2 class="away">Create a record</h2>
+ <div id="record-form-inner">
 <form action="/games/{{this.id}}/records/create" method="post">
  
   <label for="name-input">Name:</label>
@@ -15,6 +50,7 @@
   <input type="text" name="video" id="video-input" />
  
   <button type="submit">Create</button>
- 
+ </div>
+ </div>
 </form>
 

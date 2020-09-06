@@ -1,6 +1,35 @@
-<h2>Update the record</h2>
-
-<form action="/games/{{id}}/records/edit" method="POST">
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         
+        
+        <a href="/logout">Logout</a>  /  <a href="/userProfile">User Profile</a>
+         
+       
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+			
+			<nav class="main-menu">
+				<ul>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/streams">Streams</a></li>
+				</ul>
+			</nav>
+	
+		</div>
+	</header>
+<div class="update-record">
+    <h2 class="update-heading">Update the record</h2>
+    <form action="/games/{{id}}/records/edit" method="POST">
     <label for="name">Name: </label>
     <input type="text" name="name" id="name" value="{{name}}">
 
@@ -13,3 +42,10 @@
     <input type="text" name="video" id="video-input" value="{{video}}">
     <button type="submit">SAVE</button>
 </form> 
+
+
+
+</div>
+
+
+

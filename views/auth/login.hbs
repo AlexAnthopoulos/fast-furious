@@ -1,3 +1,39 @@
+
+<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="/">
+				<img src="#" alt="">
+			</a>
+			<div class="user-panel">
+         {{#if userinSession}}
+				<a href="/logout">Logout</a> / <a href="/userProfile">User Profile</a>
+        {{else}}
+        
+        <a href="/login">Login</a>  /  <a href="/signup">Register</a>
+         {{/if}}
+       
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+			
+			<nav class="main-menu">
+				<ul>
+					
+					<li><a href="/">Home</a></li>
+					{{#if userinSession}}
+					<li><a href="/games">Games</a></li>
+					
+					<li><a href="/streams">Streams</a></li>
+					{{/if}}
+				</ul>
+			</nav>
+			
+		</div>
+	</header>
 <div id="form">
   <div id="form-inner">
 <form action="/login" method="POST">

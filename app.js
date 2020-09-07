@@ -18,7 +18,7 @@ const User=require('./models/User.model');
 
 
 mongoose
-  .connect('mongodb://localhost/fast-furious', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+  .connect('mongodb://heroku_rvgrg3k5:fvng43dov4tlsvpu5u2ujtg6tj@ds129625.mlab.com:29625/heroku_rvgrg3k5', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

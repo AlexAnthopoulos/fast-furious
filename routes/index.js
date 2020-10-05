@@ -133,11 +133,7 @@ router.post('/games/:id/records/create', (req,res) => {
     if (!new mongoose.Types.ObjectId(req.user._id).equals(response.users[0])){
       return res.redirect('/')
       }
-    // if(!req.user || req.user._id !== response.users[0]){
-    //   console.log(response); // is not author
-    //   res.redirect('/');
-    //   return
-    // }
+   
     
     res.render('update-form', response);
   })
